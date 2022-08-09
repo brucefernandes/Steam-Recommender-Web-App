@@ -47,5 +47,5 @@ mongoose.connect('mongodb://localhost/videogames');
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
-    console.log("Server listening on port: 9000");
+    console.log("Connected to Video Game Database!");
 });
