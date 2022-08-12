@@ -20,6 +20,7 @@ const mapOrder = (array, order, key) => {
 
 
 exports.recommend_games = async (req, res) => {
+    console.log(req.body.name);
     try {
         game = await Game.findOne({ Name: req.body.name }).exec()
         if (!game) {
@@ -74,9 +75,12 @@ exports.search_games = (req, res, next) => {
 }
 
 exports.game_titles = (req, res, next) => {
-    Game.find({}, { Name: 1, id: 1, _id: 0 }).exec((err, games) => {
+    Game.find({}, { Name: 1, id: 1, _id: 0 }).exec((err, gamesRaw) => {
         if (err) res.status(404).send("ERROR 404: " + err);
 
+        let games = gamesRaw.filter(item => {
+            return item.Name !== null
+        })
         res.format({
             'application/json': function () {
                 console.log("The request was JSON..");
