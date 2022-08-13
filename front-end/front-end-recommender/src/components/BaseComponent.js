@@ -24,7 +24,7 @@ function BaseComponent(props) {
 
     return (
         <div>
-            <SearchBar placeholder="Enter a videogame title..." data={gameTitleQueryResults} />
+            <SearchBar placeholder="Enter a video game title..." data={gameTitleQueryResults} />
         </div>
     );
 }

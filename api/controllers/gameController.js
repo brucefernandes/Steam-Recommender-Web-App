@@ -20,7 +20,7 @@ const mapOrder = (array, order, key) => {
 
 
 exports.recommend_games = async (req, res) => {
-    console.log(req.body.name);
+
     try {
         game = await Game.findOne({ Name: req.body.name }).exec()
         if (!game) {
