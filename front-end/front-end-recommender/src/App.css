@@ -3,11 +3,11 @@
 .App {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+
   font-family: "Nunito", sans-serif;
-  background-image: linear-gradient(90deg, #410076, #8820dd);
+  /* background-image: linear-gradient(90deg, #410076, #8820dd); */
+  background-color: rgb(28, 41, 57);
+
 }
 
 body {

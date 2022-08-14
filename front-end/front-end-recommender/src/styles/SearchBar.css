@@ -1,3 +1,9 @@
+.search {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 .searchInputs {
     margin-top: 105px;
     display: flex;

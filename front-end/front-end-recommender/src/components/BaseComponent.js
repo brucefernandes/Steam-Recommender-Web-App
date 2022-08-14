@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
 import SearchBar from './SearchBar';
+import GameGrid from './GameGrid'
 
 
 
-function BaseComponent(props) {
+function BaseComponent() {
 
     const [gameTitleQueryResults, setgameTitleQueryResults] = useState([])
+    const [recommendedGames, setRecommendedGames] = useState([])
 
     useEffect(() => {
 
@@ -21,10 +23,17 @@ function BaseComponent(props) {
 
     }, [])
 
+    const getSearchResults = (games) => {
+
+        setRecommendedGames(games)
+    }
+
 
     return (
         <div>
-            <SearchBar placeholder="Enter a video game title..." data={gameTitleQueryResults} />
+            <SearchBar placeholder="Enter a video game title..." data={gameTitleQueryResults} getSearchResults={getSearchResults} />
+            <br></br>
+            {recommendedGames.length != 0 && <GameGrid games={recommendedGames} />}
         </div>
     );
 }

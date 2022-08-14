@@ -9,6 +9,7 @@ let gameSchema = mongoose.Schema({
     Developer: [String],
     Tags: [String],
     Url: String,
+    imageId: String,
     ReleaseDate: String,
     Details: String,
     Description: String,
