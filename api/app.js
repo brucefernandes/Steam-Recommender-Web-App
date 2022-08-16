@@ -13,8 +13,7 @@ mongoose.connect('mongodb+srv://bruce_fernandes:goanboy12345@videogamecluster.ms
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
-    app.listen(8080);
-
+    app.listen(3000)
     console.log("Connected to Video Game Database!");
 
 });
