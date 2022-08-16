@@ -4,7 +4,7 @@ const cors = require('cors')
 const gameRouter = require('./routes/game.js');
 
 const app = express();
-
+let port = process.env.PORT || 3000
 app.use(express.json())
 app.use(cors())
 app.use('/', gameRouter)
@@ -13,7 +13,8 @@ mongoose.connect('mongodb+srv://bruce_fernandes:goanboy12345@videogamecluster.ms
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
-    app.listen(3000)
-    console.log("Connected to Video Game Database!");
+    app.listen(port, () =>{
+        console.log("API Ready listening on Port: " + port);
+    })
 
 });
