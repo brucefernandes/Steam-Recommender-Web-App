@@ -10,7 +10,7 @@ const GameGrid = ({ games }) => {
     return (
         <div className="gameGrid">
             <Grid container columns={4} spacing={3}
-                justifyContent="flex-start"
+                justifyContent="center"
                 alignItems="center"
             >
                 {games.slice(0, 14).map(g => {

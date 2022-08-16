@@ -1,3 +1,6 @@
 /node_modules
 /.ipynb_checkpoints
 /package-lock.json
+npm-debug.log
+.DS_Store
+/*.env
