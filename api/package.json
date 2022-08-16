@@ -10,7 +10,7 @@
     "author": "bruce",
     "license": "Carleton",
     "engines": {
-        "node": "14.9"
+        "node": "v18.6.0"
     },
     "dependencies": {
         "cors": "^2.8.5",
