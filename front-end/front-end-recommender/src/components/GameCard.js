@@ -10,27 +10,21 @@ import { styled } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import Popover from '@mui/material/Popover';
+import Chip from '@mui/material/Chip';
+import Paper from '@mui/material/Paper';
 
 
-const ExpandMore = styled((props) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-    margin: 0,
-    transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-    }),
+
+
+const ListItem = styled('li')(({ theme }) => ({
+    margin: theme.spacing(0.3),
 }));
 
-
-
 const GameCard = ({ gameInfo }) => {
-    // const [expanded, setExpanded] = React.useState(false);
 
-    // const handleExpandClick = () => {
-    //     setExpanded(!expanded);
-    // };
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -45,46 +39,84 @@ const GameCard = ({ gameInfo }) => {
 
 
 
+
     return (
         <Grow in={true} style={{ transformOrigin: '0 0 0' }} timeout={1000}>
-            <Card sx={{ maxWidth: 328 }}>
-                <CardActionArea>
 
+            <Card sx={{ maxWidth: 345, backgroundColor: "#02172E" }}>
+                <CardActionArea>
                     <CardMedia
                         component="img"
-                        height='flex'
+                        height="flex"
                         image={`https://cdn.akamai.steamstatic.com/steam/apps/${gameInfo.imageId}/header.jpg`}
-                        alt={gameInfo.Name}
+                        alt={gameInfo.imageId}
                         onClick={handleClick}
                     />
+
                     <Popover
                         id={id}
                         open={open}
                         anchorEl={anchorEl}
                         onClose={handleClose}
                         anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'bottm',
+                            vertical: "bottom",
+                            horizontal: "bottom"
                         }}
+
                     >
-                        <CardContent sx={{ maxWidth: 345 }} >
-                            <Typography paragraph>Method:</Typography>
-                            <Typography paragraph>
-                                Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-                                aside for 10 minutes.
+                        <CardContent sx={{ width: 345, backgroundColor: '#e0e8ed' }}>
+
+                            <Typography sx={{ fontSize: 16 }} color="text.primary" gutterBottom>
+                                {gameInfo.Developer}
+                            </Typography>
+                            <Typography variant="h5" component="div">
+                                {gameInfo.Name}
+                            </Typography>
+                            <CardMedia
+                                component="img"
+                                height="flex"
+                                image={`https://cdn.akamai.steamstatic.com/steam/apps/${gameInfo.imageId}/header.jpg`}
+                                alt={gameInfo.imageId}
+                            />
+                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                Release Date: {gameInfo.ReleaseDate}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    flexWrap: 'wrap',
+                                    listStyle: 'none',
+                                    p: 0.5,
+                                    m: 0,
+                                }}
+                                component="ul"
+                            >
+                                {
+                                    gameInfo.Tags.slice(0, 9).map((data) => {
+                                        return (
+                                            <ListItem key={data.key}>
+                                                <Chip
+                                                    color="primary"
+                                                    label={data}
+
+                                                />
+                                            </ListItem>
+                                        );
+                                    })
+                                }
                             </Typography>
 
+                            <Typography variant="body2">
+                                {gameInfo.Description}
+
+                            </Typography>
 
                         </CardContent>
-
                     </Popover>
-
-
-
-
                 </CardActionArea>
-
             </Card>
+
 
         </Grow>
 

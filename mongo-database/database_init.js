@@ -39,14 +39,13 @@ var getStream = function () {
     return stream.pipe(parser);
 };
 
-
 const connectionParams = {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
 }
 
-mongoose.connect('mongodb://localhost/videogames');
+mongoose.connect('mongodb+srv://bruce_fernandes:goanboy12345@videogamecluster.msextg4.mongodb.net/?retryWrites=true&w=majority');
 
 let db = mongoose.connection;
 
@@ -55,46 +54,47 @@ db.once('open', function () {
 
     console.log("Connected to Video Game Database!");
 
-    mongoose.connection.db.dropDatabase(function (err, result) {
+    // mongoose.connection.db.dropDatabase(function (err, result) {
+    //     if (err) {
+    //         console.log("Error dropping database:");
+    //         console.log(err);
+    //         return;
+    //     }
+    Game.insertMany(games, function (err, result) {
         if (err) {
-            console.log("Error dropping database:");
             console.log(err);
             return;
         }
-        Game.insertMany(games, function (err, result) {
-            if (err) {
-                console.log(err);
-                return;
-            }
-            getStream()
-                .pipe(es.mapSync(function (data) {
-                    c = 0
+        getStream()
+            .pipe(es.mapSync(function (data) {
+                c = 0
 
-                    data.forEach(score => {
-                        let new_score = new Score();
-                        new_score.id = c;
-                        new_score.Scores = score;
-                        scores.push(new_score);
-                        c++
+                data.forEach(score => {
+                    let new_score = new Score();
+                    new_score.id = c;
+                    new_score.Scores = score;
+                    scores.push(new_score);
+                    c++
 
-                    })
-                    Score.insertMany(scores, (err, result) => {
-                        if (err) {
-                            console.log(err);
-                            return;
-                        }
-                        console.log(result);
-                        mongoose.connection.close()
+                })
+                Score.insertMany(scores, (err, result) => {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+                    console.log(result);
+                    mongoose.connection.close()
 
-                    })
-                }));
-
-
-        });
-
-
-    });
-
-
+                })
+                // }));
+            }))
+    })
 
 });
+
+
+
+
+
+
+

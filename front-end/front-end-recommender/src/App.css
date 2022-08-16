@@ -1,16 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
 
 .App {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 
   font-family: "Nunito", sans-serif;
   /* background-image: linear-gradient(90deg, #410076, #8820dd); */
-  background-color: rgb(28, 41, 57);
 
 }
 
 body {
   padding: 0;
   margin: 0;
+  background-color: rgb(3, 23, 46);
+  /* 02172E */
+  height: 100%
+}
+
+.gameGrid {
+  /* margin: 5; */
+  margin-left: 50px;
+  margin-left: 50px;
 }

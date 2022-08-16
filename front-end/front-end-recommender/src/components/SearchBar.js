@@ -9,10 +9,14 @@ function SearchBar({ placeholder, data, getSearchResults }) {
 
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
-    // const [recommendedGames, setRecommendedGames] = useState([]);
+    const [searchBarHeight, setSearchBarHeight] = useState("360px");
+    const [radius, setRadius] = useState(['27px', '27px', '27px', '27px'])
+
 
 
     const handleFilter = (event) => {
+
+        setRadius(['25px', '25px', '0px', '0px'])
         const searchWord = event.target.value;
         setWordEntered(searchWord)
         const newFilter = data.filter((item) => {
@@ -31,12 +35,17 @@ function SearchBar({ placeholder, data, getSearchResults }) {
         setFilteredData([])
         setWordEntered("")
         getSearchResults([])
+        setSearchBarHeight("360px")
+        setRadius(['27px', '27px', '27px', '27px'])
+
 
     }
     const handleGameClick = async (name) => {
 
         setWordEntered(name)
         setFilteredData([])
+        setSearchBarHeight("100px")
+        setRadius(['27px', '27px', '27px', '27px'])
 
         const response = await axios.post(`http://localhost:8080/recommend`, { name: name })
         getSearchResults(response.data)
@@ -47,26 +56,32 @@ function SearchBar({ placeholder, data, getSearchResults }) {
     return (
         <div className="search">
             <Fade in={true} mountOnEnter timeout={2500}>
-                <div className="searchInputs" >
-                    <input type="text" placeholder={placeholder} value={wordEntered} onChange={handleFilter} />
-                    <div className="searchIcon">
+                <div className="searchInputs" style={{ display: 'flex', marginTop: searchBarHeight }} >
+                    <input type="text" style={{
+                        borderTopLeftRadius: radius[0], borderBottomLeftRadius: radius[3],
+
+                    }} placeholder={placeholder} value={wordEntered} onChange={handleFilter} />
+
+                    <div className="searchIcon" style={{ borderTopRightRadius: radius[1], borderBottomRightRadius: radius[2] }}>
                         {wordEntered.length == 0 ?
                             <SearchIcon /> :
                             <CloseIcon id="clearBtn" onClick={clearInput} />}
 
                     </div>
                 </div>
-            </Fade>
+            </Fade >
 
-            {filteredData.length != 0 && (
-                <div className="dataResult">
-                    {filteredData.slice(0, 25).map((value, key) => {
-                        return <a className="dataItem" onClick={() => { handleGameClick(value.Name) }}>
-                            <p >{value.Name}</p>
-                        </a>
-                    })}
-                </div>
-            )}
+            {
+                filteredData.length != 0 && (
+                    <div className="dataResult">
+                        {filteredData.slice(0, 25).map((value, key) => {
+                            return <a className="dataItem" onClick={() => { handleGameClick(value.Name) }}>
+                                <p >{value.Name}</p>
+                            </a>
+                        })}
+                    </div>
+                )
+            }
         </div >
     )
 }

@@ -2,19 +2,15 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+
 }
 
-.searchInputs {
-    margin-top: 105px;
-    display: flex;
-}
+
 
 .search input {
     background-color: white;
     border: 0;
-    /* border-radius: 8px; */
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
+
     font-size: 18px;
     padding: 15px;
     height: 30px;
@@ -27,8 +23,7 @@
     background-color: white;
     display: grid;
     place-items: center;
-    /* border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px; */
+
 }
 
 input:focus {
@@ -42,13 +37,13 @@ input:focus {
 
 
 .dataResult {
-    /* margin-top: 5px; */
     width: 505px;
     height: 200px;
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     overflow: hidden;
     overflow-y: auto;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 
 }
 
