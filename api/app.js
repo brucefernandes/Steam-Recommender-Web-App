@@ -4,7 +4,7 @@ const cors = require('cors')
 const gameRouter = require('./routes/game.js');
 require("dotenv").config()
 
-let port = process.env.PORT || 9000
+let expressPort = process.env.PORT || 9000
 
 const app = express();
 
@@ -22,8 +22,8 @@ mongoose.connect(process.env.MONGO_URL)
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
-    app.listen(port, () => {
-        console.log("Server is running at Port: " + port);
+    app.listen(expressPort, () => {
+        console.log("Server is running at Port: " + expressPort);
     })
 
 });

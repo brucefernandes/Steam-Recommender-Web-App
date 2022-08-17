@@ -47,7 +47,7 @@ function SearchBar({ placeholder, data, getSearchResults }) {
         setSearchBarHeight("100px")
         setRadius(['27px', '27px', '27px', '27px'])
 
-        const response = await axios.post(`http://localhost:8080/recommend`, { name: name })
+        const response = await axios.post(`http://localhost:9000/recommend`, { name: name })
         getSearchResults(response.data)
 
     }
