@@ -4,5 +4,12 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongoose": "^6.5.2"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "build": "webpack"
+  },
+  "engines":{
+    "node": "16.16.0"
   }
 }
