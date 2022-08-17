@@ -1,5 +1,5 @@
-const Game = require('../../mongo-database/models/GameModel')
-const Score = require('../../mongo-database/models/ScoreModel')
+const Game = require('../models/GameModel')
+const Score = require('../models/ScoreModel')
 
 
 const mapOrder = (array, order, key) => {
