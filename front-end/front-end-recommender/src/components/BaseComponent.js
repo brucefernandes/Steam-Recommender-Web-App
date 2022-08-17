@@ -15,7 +15,7 @@ function BaseComponent() {
     useEffect(() => {
 
         let query = async () => {
-            const response = await axios.get(`http://localhost:9000/game_titles`)
+            const response = await axios.get(`http://intense-fjord-20781.herokuapp.com/game_titles`)
             setgameTitleQueryResults(response.data)
         }
 
